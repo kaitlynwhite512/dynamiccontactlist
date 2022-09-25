@@ -1,0 +1,40 @@
+doctype html
+head
+  title Contact Book:
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3', crossorigin='anonymous')
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js', integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p', crossorigin='anonymous')
+  link(rel='stylesheet' href='/stylesheets/style.css')
+  script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+  script(src='/javascripts/map_ajax.js')
+  link(rel='stylesheet' href='https://unpkg.com/leaflet@1.8.0/dist/leaflet.css' integrity='sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==' crossorigin='')
+  script(src='https://unpkg.com/leaflet@1.8.0/dist/leaflet.js' integrity='sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==' crossorigin='')
+block content
+  .container
+  h1 Your Contacts:
+  table.table(id='contacttab', data-fields=JSON.stringify(contactArr))
+    thead
+      tr
+        th Name
+        th Address
+        th Email
+        th Phone
+        th Edit
+        th Delete
+      each val in contactArr
+          tr(data-fields=JSON.stringify(val), id = '#{val._id}', class="content")
+              td= val.name
+              td= val.address
+              td= val.email
+              td= val.phone
+              td 
+                a(href='/contactedit/'+val._id) Edit
+              td 
+                a(href='/deletecontact/'+val._id) Delete
+    tbody
+  br
+  body
+    form(action="mailer", method="POST")
+      button.btn.btn-primary(type='submit') Add Another Contact
+    br
+    br
+    #displaymap

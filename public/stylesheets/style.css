@@ -1,0 +1,19 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.content:hover { background: lightgrey !important; }
+.content:hover td { background: transparent; }
+
+table, tr, td, th {
+
+  border: 2px solid black;
+
+}
+
+a {
+  color: #00B7FF;
+}
+
+#displaymap { height: 450px; }
